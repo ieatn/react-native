@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
 
 export default function App() {
   const [todo, setTodo] = useState('');
   const [todosList, setTodosList] = useState([]);
+  const [showModal, setShowModal] = useState(true);
 
   function addTodo() {
     if (todo.trim() === '') {
@@ -24,6 +25,24 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={showModal}
+        onRequestClose={() => {
+          setShowModal(false);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalText}>Welcome to Todo App!</Text>
+          <Button
+            title="Start"
+            onPress={() => {
+              setShowModal(false);
+            }}
+          />
+        </View>
+      </Modal>
       <View style={styles.topHalf}>
         <View style={styles.todoInputContainer}>
           <Text>Todo List</Text>
@@ -95,5 +114,15 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     color: 'red',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightgray',
+  },
+  modalText: {
+    fontSize: 24,
+    marginBottom: 20,
   },
 });
