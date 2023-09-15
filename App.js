@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, TouchableOpacity, Modal, Image } from 'react-native';
 
 export default function App() {
   const [todo, setTodo] = useState('');
@@ -31,7 +31,7 @@ export default function App() {
         visible={showModal}
         onRequestClose={() => {
           setShowModal(false);
-        }}
+        }}s
       >
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>Welcome to Todo App!</Text>
@@ -44,7 +44,9 @@ export default function App() {
         </View>
       </Modal>
       <View style={styles.topHalf}>
+      <Image style={styles.image} source={require('./assets/images/chika.png')}/>
         <View style={styles.todoInputContainer}>
+
           <Text>Todo List</Text>
           <TextInput
             style={styles.input}
@@ -125,4 +127,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
   },
+  image: {
+    width: 100,
+    height: 100,
+  }
 });
